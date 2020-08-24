@@ -33,11 +33,9 @@ Data extract from the CPS downloaded on August 1, 2020 by Daniel Schwam.
 
 Reference(s): 
 
-1. Sarah Flood, Miriam King, Renae Rodgers, Steven Ruggles and J. Robert Warren. Integrated Public Use Microdata Series, Current Population Survey: Version 7.0 [dataset]. Minneapolis, MN: IPUMS, 2020. 
-https://doi.org/10.18128/D030.V7.0
+1. Sarah Flood, Miriam King, Renae Rodgers, Steven Ruggles and J. Robert Warren. Integrated Public Use Microdata Series, Current Population Survey: Version 7.0 [dataset]. Minneapolis, MN: IPUMS, 2020. https://doi.org/10.18128/D030.V7.0
 
-2. Bauer, Laren, Wendy Edelberg, Jimmy O'Donnell, and Jay Shambaugh (2020). "Who are the potentially misclassified in the Employment Report?" Brookings. Published online on June 30, 2020. 
-3. https://www.brookings.edu/blog/up-front/2020/06/30/who-are-the-potentially-misclassified-in-the-employment-report/#cancel
+2. Bauer, Laren, Wendy Edelberg, Jimmy O'Donnell, and Jay Shambaugh (2020). "Who are the potentially misclassified in the Employment Report?" Brookings. Published online on June 30, 2020. https://www.brookings.edu/blog/up-front/2020/06/30/who-are-the-potentially-misclassified-in-the-employment-report/#cancel
 
 ## Project Members:
 
