@@ -307,49 +307,151 @@ preserve
 
 restore
 
-* Generate figure 2 data
-* Load aggregate layoff data used to create figure 1
-use "temp_and_perm_layoffs.dta", clear
+* Generate figure 2 data and in-text numbers
+use "transition_matrix.dta", clear
 
-* Create consistent employment state variables between two steps
-gen state_t0 = emp_state + 1
-
-* Merge on transition rates
-merge 1:1 year month state_t0 using "transition_matrix.dta"
-drop if _merge == 2
-drop _merge
-
-* Keep April and May data
-keep if month == 4 | month == 5
-
-* Temporary layoff
+* Keep temporary layoff numbers only
 keep if state_t0 == 2
 
-* Calculate the number of workers that transitioned by employment state
-forval z = 1/5 {
-	gen transition_n`z' = n_mil * (pct_n`z' / 100)
-}
+* Format label values
+label define month_lbl 1 "January to February" 2 "February to March" 3 "March to April" 4 "April to May" 5 "May to June" 6 "June to July" 7 "July to August", replace
+label values month month_lbl
 
-* Label variables
-label var transition_n1 "Transitioned to/remained in employed in t + 1" 
-label var transition_n2 "Transitioned to/remained in temporary layoff in t + 1" 
-label var transition_n3 "Transitioned to/remained in permanent layoff/unemployment in t + 1" 
-label var transition_n4 "Transitioned to entrant in t + 1"
-label var transition_n5 "Transitioned to/remained in NILF in t + 1"
+* Reorder, label variables, and export to Excel
+drop year state_t0 pct_n4
+order month pct_n2 pct_n1 pct_n3 pct_n5
+label var month "Temporary layoff"
+label var pct_n2 "Remained on temporary layoff"
+label var pct_n1 "Became employed"
+label var pct_n3 "Moved to permanent layoff"
+label var pct_n5 "Left labor force"
+export excel "temp_and_perm_layoffs.xlsx", sheetreplace sheet("Fig 2 and in-text") firstrow(varlabels) cell(A2)
 
-* Keep relevant variables
-keep year month emp_state n_mil transition_n*
+* Format excel output
+putexcel set "temp_and_perm_layoffs.xlsx", modify sheet("Fig 2 and in-text")
 
-* To get the "entered temporary layoff" numbers, simply subtract the total number
-* of workers in the temporary layoff group from the previous period's "transitioned to/remained in
-* temporary layoff group". For example, the get the number of workers that 
-* entered temporary layoff, take the total number of workers in the layoff group
-* in May 2020 (12.4 million) and subtract 6.6 (the number that stayed in this group
-* from April 2020).
+	putexcel A1 = "TRANSITION RATES"
+	putexcel A1:E1, merge
+	
+	putexcel A12 = "TRANSITION COUNTS = RATES * NUMBER IN FIRST MONTH"
+	putexcel A12:H12, merge
+	
+	putexcel G1 = "TEMPORARY NUMBERS"
+	putexcel G1:H1, merge
+	putexcel G2 = "Month"
+	putexcel H2 = "Est."
 
-* Export data to excel
-export excel "temp_and_perm_layoffs.xlsx", sheetreplace sheet("figure2") firstrow(variables)
+	putexcel G3 = "January"
+	putexcel G4 = "February"
+	putexcel G5 = "March"
+	putexcel G6 = "April"
+	putexcel G7 = "May"
+	putexcel G8 = "June"
+	
+	putexcel H3 = formula(=figure1!D2)
+	putexcel H4 = formula(=figure1!D3)
+	putexcel H5 = formula(=figure1!D4)
+	putexcel H6 = formula(=figure1!D5)
+	putexcel H7 = formula(=figure1!D6)
+	putexcel H8 = formula(=figure1!D7)
 
+	putexcel J1 = "IN-TEXT SHARE PERMANENT"
+	putexcel J1:L1, merge
+	putexcel J2 = "Month"
+	putexcel K2 = "Est."
+	
+	putexcel J3 = "January"
+	putexcel J4 = "February"
+	putexcel J5 = "March"
+	putexcel J6 = "April"
+	putexcel J7 = "May"
+	putexcel J8 = "June"
+	
+	putexcel K3 = formula(=figure1!D8)
+	putexcel K4 = formula(=figure1!D9)
+	putexcel K5 = formula(=figure1!D10)
+	putexcel K6 = formula(=figure1!D11)
+	putexcel K7 = formula(=figure1!D12)
+	putexcel K8 = formula(=figure1!D13)
+	
+	putexcel A13 = "Temporary Layoff"
+	putexcel A14 = "January to February"
+	putexcel A15 = "February to March"
+	putexcel A16 = "March to April"
+	putexcel A17 = "April to May"
+	putexcel A18 = "May to June"
+	
+	putexcel B13 = "Remained on temporary layoff"
+	putexcel B14 = formula(=(B3/100)*H3)
+	putexcel B15 = formula(=(B4/100)*H4)
+	putexcel B16 = formula(=(B5/100)*H5)
+	putexcel B17 = formula(=(B6/100)*H6)
+	putexcel B18 = formula(=(B7/100)*H7)
+	
+	putexcel C13 = "Became employed"
+	putexcel C14 = formula(=(C3/100)*H3)
+	putexcel C15 = formula(=(C4/100)*H4)
+	putexcel C16 = formula(=(C5/100)*H5)
+	putexcel C17 = formula(=(C6/100)*H6)
+	putexcel C18 = formula(=(C7/100)*H7)
+	
+	putexcel D13 = "Moved to permanent layoff"
+	putexcel D14 = formula(=(D3/100)*H3)
+	putexcel D15 = formula(=(D4/100)*H4)
+	putexcel D16 = formula(=(D5/100)*H5)
+	putexcel D17 = formula(=(D6/100)*H6)
+	putexcel D18 = formula(=(D7/100)*H7)
+	
+	putexcel E13 = "Left labor force"
+	putexcel E14 = formula(=(E3/100)*H3)
+	putexcel E15 = formula(=(E4/100)*H4)
+	putexcel E16 = formula(=(E5/100)*H5)
+	putexcel E17 = formula(=(E6/100)*H6)
+	putexcel E18 = formula(=(E7/100)*H7)
+	
+	putexcel F13 = "Entered temporary layoff"
+	putexcel F14 = formula(=H4-B14)
+	putexcel F15 = formula(=H5-B15)
+	putexcel F16 = formula(=H6-B16)
+	putexcel F17 = formula(=H7-B17)
+	putexcel F18 = formula(=H8-B18)
+	
+	putexcel G13 = "CHECK"
+	putexcel G14 = formula(=F14+B14)
+	putexcel G15 = formula(=F15+B15)
+	putexcel G16 = formula(=F16+B16)
+	putexcel G17 = formula(=F17+B17)
+	putexcel G18 = formula(=F18+B18)
+	
+	putexcel A23 = "Summary for Sankey Diagram"
+	putexcel A23:H23, merge
+	
+	putexcel A25 = "Of the 16.8 million who were on temporary layoff in April 2020:"
+	putexcel A26 = "In May"
+	putexcel A28 = "Of the 12.4 million who were on temporary layoff in May 2020"
+	putexcel A29 = "In June"
+	
+	putexcel B24 = "Remained on temporary layoff"
+	putexcel B26 = formula(=B17)
+	putexcel B29 = formula(=B18)
+	
+	putexcel C24 = "Became employed"
+	putexcel C26 = formula(=C17)
+	putexcel C29 = formula(=C18)
+	
+	putexcel D24 = "Moved to permanent layoff"
+	putexcel D26 = formula(=D17)
+	putexcel D29 = formula(=D18)
+	
+	putexcel E24 = "Left labor force"
+	putexcel E26 = formula(=E17)
+	putexcel E29 = formula(=E18)
+	
+	putexcel F24 = "+ Entered temporary layoff"
+	putexcel F26 = formula(=F17)
+	putexcel F29 = formula(=F18)
+	
+putexcel clear
 
 * Other references:
 
