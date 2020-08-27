@@ -1,6 +1,8 @@
 # RAND Commentary – Temporary Layoff Transitions
 ED & Labor Unit
 
+This GitHub repository supports a RAND Commentary written by Kathryn Edwards and can be found at the following URL: https://www.rand.org/blog/2020/08/what-unemployment-statistics-obscure-about-temporary-layoffs.html
+
 #### -- Project Status: Completed.
 
 ## Project Description
@@ -39,6 +41,11 @@ Reference(s):
 
 ## Project Members:
 
-Kathryn Edwards (kathryne@rand.org)
+Kathryn Edwards (kathryne@rand.org) and Daniel Schwam (dschwam@rand.org)
 
 * Feel free to contact team leads with any questions or if you are interested in contributing!
+
+## Suggested Citation for this repository: 
+
+Schwam, Daniel, and Kathryn Edwards, “Within Unemployment Transitions in the Current Population Survey,” GitHub, RAND Corporation Repository, last updated 24 August 2020. As of August 27, 2020: https://github.com/RANDCorporation/Temporary-Layoff-Transitions
+
