@@ -267,7 +267,9 @@ restore
 
 preserve
 
-	* Calculate population by employment state in time t = 0 (wtfinl or lnkfw1mwt here?)
+	* Calculate population by employment state in time t = 0. Transition rates from specific employment statuses 
+	* (e.g., from temporary layoff in April 2020 to employed in May 2020) are relative to the representative
+	* sample that transitions from month-to-month. Hence why we use LNKFW1MWT instead of WTFINL here.
 	collapse (sum) n [pweight=lnkfw1mwt], by(state_t0 year month)
 	ren n t
 
