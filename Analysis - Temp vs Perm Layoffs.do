@@ -1,9 +1,5 @@
 * COMMENTARY (The RAND Blog)
-* Title: Want to know what's happening to the economy? Don't look at the unemployment
-* 		 rate, but the views of unemployed workers
-
-* Subtitle: When the Unemployment rate is not enough-Labor Market Indicators for
-* 			the Pandemic Economy
+* Title: What Unemployment Statistics Obscure About Temporary Layoffs
 
 * Commentary written by: Kathryn Anne Edwards
 
@@ -188,7 +184,7 @@ drop if popstat != 1
 * Individuals are considered employed if they were classified as "at work" (empstat == 10)
 * or the have a job and were absent from work the previous week for a specified 
 * reason (whyabsnt != 15)
-gen state_t0 = 1 if empstat == 10 | empstat == 12 & whyabsnt != 15
+gen state_t0 = 1 if empstat == 10 | (empstat == 12 & whyabsnt != 15)
 
 
 * Individuals classified by layoff status
