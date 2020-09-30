@@ -33,6 +33,12 @@ The second consideration is the appropriate weights. The CPS has two separate we
 
 Our estimate of temporary layoffs does not cohere with the BLS estimate in the Employment Situation, Table A11. The BLS defines temporary layoff as workers with a recall date to their old job. These workers do not have to be searching for work (https://www.bls.gov/cps/definitions.htm#joblosers). We add to this individuals who are potentially misclassified, which was a key issue in the early months of the recession: employed but not at work for other reasons. In addition, the use of both harmonized and unharmonized variables in IPUMS creates some definitional issues; there are workers who answer that they have a recall data with their employer (uh_lay6m_b1 or uh_laydt_b1) who are also classified as not in the labor force and therefore not unemployed. This is about 15% of positive recall data respondents, and they are not included in our definition of temporary layoff.
 
+
+Note added September 30, 2020:
+
+Our definition of workers on temporary layoff in the CPS is reflective of individuals with an uncertain unemployment status, i.e., workers expect to return to work in the next six months but they do not have a definite return-to-work date. We label it as “temporary,” as they believe that their unemployment spell will be temporary. But, there are competing definitions of “temporary” layoff or unemployment, that overlap or stand alongside our definition. Our temporary layoff workers could also be thought of as an uncertainty in unemployment. In contrast, our definition of workers on permanent layoff/unemployment measures unemployed workers whose status is certain. These workers either have a specific return-to-work date or do not expect to be recalled to work within the next six months.
+
+
 Data extract from the CPS downloaded on August 1, 2020 by Daniel Schwam.
 
 Reference(s): 
@@ -49,5 +55,5 @@ Kathryn Edwards (kathryne@rand.org) and Daniel Schwam (dschwam@rand.org)
 
 ## Suggested Citation for this repository: 
 
-Schwam, Daniel, and Kathryn Edwards, “Within Unemployment Transitions in the Current Population Survey,” GitHub, RAND Corporation Repository, last updated 24 August 2020. As of August 27, 2020: https://github.com/RANDCorporation/Temporary-Layoff-Transitions
+Schwam, Daniel, and Kathryn Edwards, “Within Unemployment Transitions in the Current Population Survey,” GitHub, RAND Corporation Repository, last updated 30 September 2020. As of September 30, 2020: https://github.com/RANDCorporation/Temporary-Layoff-Transitions
 
